@@ -20,7 +20,7 @@ public class Controler {
 	public void createComposite(Composite parent) {
 		FormLayout layout = new FormLayout();
 		layout.marginHeight = 10;
-		layout.marginWidth = 25;
+		layout.marginWidth = 5;
 	 
 		// set layout for parent
 		parent.setLayout(layout);
