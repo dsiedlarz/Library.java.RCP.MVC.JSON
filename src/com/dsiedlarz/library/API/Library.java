@@ -4,6 +4,8 @@ import java.util.Collection;
 
 public interface Library {
 	
+	
+	
     public Collection<Book> getBooks();
     
     public Book getBookById(int id);
@@ -13,6 +15,9 @@ public interface Library {
     public int deleteBook(int id);
     
     public int checkBookStatus(int id);
+    
+    public long getAvailableId();
+    
     
 
 }

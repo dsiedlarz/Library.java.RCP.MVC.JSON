@@ -10,9 +10,13 @@ public class LibraryM implements Library {
 
 	Collection<Book> books= new ArrayList<Book>();
 	
+	long availableId=-1;
+	
 	public LibraryM(){
 		books.add(new BookM(1,"Krzy¿acy","Sienkiewicz Henryk","1990","isbn",1));
 		books.add(new BookM(2,"Ogniem i mieczem","Sienkiewicz Henryk","1884","isbn",1));
+		
+		availableId = 3;
 	}
 	
 	
@@ -54,4 +58,13 @@ public class LibraryM implements Library {
 		return 0;
 	}
 
+
+	@Override
+	public long getAvailableId() {
+		// TODO Auto-generated method stub]
+		return availableId++;
+	}
+
+	
+	
 }

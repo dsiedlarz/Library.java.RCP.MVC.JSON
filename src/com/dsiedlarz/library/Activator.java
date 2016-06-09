@@ -1,5 +1,12 @@
 package com.dsiedlarz.library;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -25,7 +32,10 @@ public class Activator implements BundleActivator {
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
-		library = new LibraryM();
+		
+		
+		library = createLibrary();
+		References.setLibrary(library);
 		
  
 		System.out.println("Siema, zaczynamy");
@@ -38,5 +48,31 @@ public class Activator implements BundleActivator {
 	public void stop(BundleContext bundleContext) throws Exception {
 		Activator.context = null;
 	}
+	
+	static Library createLibrary() {
+		
+	      Library object = null;
+	      try {
+	    	
+	    	  
+	    	  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Dawid\\workspace\\com.dsiedlarz.library\\conf.prefs"));
+	  		String className= br.readLine();
+	          Class<Library> classDefinition = (Class<Library>) Class.forName(className);
+	          object = classDefinition.newInstance();
+	      } catch (InstantiationException e) {
+	          System.out.println(e);
+	      } catch (IllegalAccessException e) {
+	          System.out.println(e);
+	      } catch (ClassNotFoundException e) {
+	          System.out.println(e);
+	      } catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	      return object;
+	   }
 
 }

@@ -2,7 +2,9 @@ package com.dsiedlarz.library.API;
 
 public interface Book {
 	
-	  public String getTitle();
+	    
+	
+	    public String getTitle();
 
 	    public String getAuthor();
 
@@ -26,6 +28,7 @@ public interface Book {
 	    
 	    public void setId(long id);
 	
+	   
 
 	
 

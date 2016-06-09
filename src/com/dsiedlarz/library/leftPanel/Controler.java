@@ -2,6 +2,8 @@ package com.dsiedlarz.library.leftPanel;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.e4.ui.services.EMenuService;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -10,6 +12,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
 
 public class Controler {
 	
@@ -17,10 +20,12 @@ public class Controler {
 
 
 	@PostConstruct
-	public void createComposite(Composite parent) {
+	public void createComposite(Composite parent, EMenuService menuService, Shell shell) {
 		FormLayout layout = new FormLayout();
 		layout.marginHeight = 10;
 		layout.marginWidth = 5;
+		
+		
 	 
 		// set layout for parent
 		parent.setLayout(layout);
@@ -68,6 +73,25 @@ public class Controler {
 	 
 		// set FormDate for button
 		button2.setLayoutData(formData);
+		
+		
+		button2.addListener(SWT.Selection, new Listener(){
+
+			@Override
+			public void handleEvent(Event event) {
+				 switch (event.type) {
+			        case SWT.Selection:
+			        	Dialog dialog =new OpenTitleDialog(shell);
+			        	dialog.open();
+			        	
+			        	
+			          break;
+			        }
+				
+			}
+			
+			
+		});
 	 
 		// create a button or any other widget
 		Button button3 = new Button(parent, SWT.PUSH);

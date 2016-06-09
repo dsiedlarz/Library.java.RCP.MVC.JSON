@@ -1,12 +1,13 @@
 package com.dsiedlarz.library.rightPanel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.services.EMenuService;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -20,16 +21,18 @@ public class Controller {
 
 
 	@PostConstruct
-	public void createComposite(Composite parent) {
+	public void createComposite(Composite parent, EMenuService menuService) {
 		parent.setLayout(new GridLayout(1, false));
 
 		
 		
-		tableViewer = new TableViewer(parent);
+		tableViewer = new TableViewer(parent,SWT.FULL_SELECTION | SWT.MULTI);
 
 		tableViewer.setContentProvider(ArrayContentProvider.getInstance());
 		tableViewer.setInput(createInitialDataModel());
 		tableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
+		
+		   menuService.registerContextMenu(tableViewer.getControl(), "com.dsiedlarz.library.popupmenu.add)");
 		
 	}
 

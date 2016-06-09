@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_c3AF0MjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.application" bindingContexts="_c3AF2cjYEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_c3AF0cjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.window.main" label="Biblioteka" width="500" height="400">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_c3AF0cjYEeSyMNYR5xypkQ" elementId="org.eclipse.e4.window.main" label="Biblioteka" iconURI="platform:/plugin/com.dsiedlarz.library/icons/iconLibrary.png" width="1000" height="500">
     <children xsi:type="basic:PartSashContainer" xmi:id="_jf2vgC1SEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.partsashcontainer.0" horizontal="true">
-      <children xsi:type="basic:Part" xmi:id="_KpYy8C1XEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.part.menu" containerData="20" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.leftPanel.Controler" label="Menu"/>
-      <children xsi:type="basic:Part" xmi:id="_8wppQC2dEeayltIsUEvGEg" elementId="com.dsiedlarz.library.part.lista" containerData="80" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.rightPanel.Controller" label="Lista"/>
+      <children xsi:type="basic:Part" xmi:id="_KpYy8C1XEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.part.menu" containerData="20" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.leftPanel.Controler" label="Menu" iconURI="platform:/plugin/com.dsiedlarz.library/icons/iconLibrary.png"/>
+      <children xsi:type="basic:Part" xmi:id="_8wppQC2dEeayltIsUEvGEg" elementId="com.dsiedlarz.library.part.lista" containerData="80" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.rightPanel.Controller" label="Lista" iconURI="platform:/plugin/com.dsiedlarz.library/icons/iconLibrary.png"/>
     </children>
     <mainMenu xmi:id="_gFPCwC1SEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.menu.0">
       <children xsi:type="menu:Menu" xmi:id="_tvt1wC1SEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.menu.file" label="File"/>
