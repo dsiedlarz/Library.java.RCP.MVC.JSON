@@ -50,6 +50,18 @@ public class References {
 		References.tableViewer = tableViewer;
 	}
 	
+	private static String staxFile ="D:\\test.txt";
+
+	public static String getStaxFile() {
+		return staxFile;
+	}
+
+	public static void setStaxFile(String staxFile) {
+		References.staxFile = staxFile;
+	}
+	
+	
+	
 	
 	
 	

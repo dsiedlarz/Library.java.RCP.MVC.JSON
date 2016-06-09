@@ -63,6 +63,8 @@ public class Activator implements BundleActivator {
 	          object = classDefinition.newInstance();
 	          className= br.readLine();
 	          References.setBookClass((Class<Book>) Class.forName(className));
+	        
+	          References.setStaxFile(br.readLine());
 	          
 	      } catch (InstantiationException e) {
 	          System.out.println(e);

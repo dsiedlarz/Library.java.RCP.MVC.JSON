@@ -11,7 +11,9 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Text;
 
 import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
@@ -19,12 +21,16 @@ import com.dsiedlarz.library.API.Book;
 public class Controller {
 
 	private TableViewer tableViewer;
+	private Text searchTxt;
+	private Button searchButton;
 
 	@PostConstruct
 	public void createComposite(Composite parent, EMenuService menuService) {
 		TableColumnLayout tableColumnLayout = new TableColumnLayout();
 		parent.setLayout(tableColumnLayout);
 
+		
+		
 		tableViewer = new TableViewer(parent,
 			      SWT.MULTI | 
 			      SWT.H_SCROLL | 
@@ -41,7 +47,6 @@ public class Controller {
 		tableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		
-		menuService.registerContextMenu(tableViewer.getControl(), "com.dsiedlarz.library.popupmenu.add)");
 		
 		
 	}
