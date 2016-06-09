@@ -12,9 +12,9 @@ public interface Library {
     
     public int addNewBook(Book book);
     
-    public int deleteBook(int id);
+    public int deleteBook(long id);
     
-    public int checkBookStatus(int id);
+    public int checkBookStatus(long id);
     
     public long getAvailableId();
     

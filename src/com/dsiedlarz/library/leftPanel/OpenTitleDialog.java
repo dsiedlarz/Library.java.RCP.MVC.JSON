@@ -121,9 +121,14 @@ public class OpenTitleDialog extends TitleAreaDialog {
 	  
 	  private void saveInput() {
 		  
-		  //Book b = new Book();
-		  
-		 // References.getLibrary().addNewBook(new Book())
+		Book tmp = References.getNewBook();
+		tmp.setTitle(txtTitle.getText());
+		tmp.setAuthor(txtAuthor.getText());
+		tmp.setYear(txtYear.getText());
+		tmp.setIsbn(txtIsbn.getText());
+		
+		References.getLibrary().addNewBook(tmp);
+		References.getTableViewer().refresh();
 
 	  }
 

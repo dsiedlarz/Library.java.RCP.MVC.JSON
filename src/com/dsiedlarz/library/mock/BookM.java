@@ -8,6 +8,12 @@ public class BookM implements Book {
 	int status;
 	long id;
 	
+	
+	
+	public BookM() {
+		super();
+	}
+
 	public BookM(long id, String title,String author, String isbn, String year, int status){
 		this.id =id;
 		this.title = title;
@@ -87,5 +93,14 @@ this.year = year;
 		this.id=id;
 		
 	}
+
+	@Override
+	public String toString() {
+		
+		return String.format("%4d. %20s %25s %8s %s", getId(),getTitle(),getAuthor(),getYear(), getIsbn())	;
+	}
+	
+	
+	
 
 }

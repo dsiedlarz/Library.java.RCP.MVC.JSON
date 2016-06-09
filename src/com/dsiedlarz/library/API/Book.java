@@ -28,7 +28,7 @@ public interface Book {
 	    
 	    public void setId(long id);
 	
-	   
+	    public String toString();
 
 	
 

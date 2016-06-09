@@ -2,6 +2,7 @@ package com.dsiedlarz.library.mock;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import com.dsiedlarz.library.API.Book;
 import com.dsiedlarz.library.API.Library;
@@ -37,23 +38,29 @@ public class LibraryM implements Library {
 
 	@Override
 	public int addNewBook(Book book) {
+		book.setId(getAvailableId());
 		books.add(book);
 		return 0;
 	}
 
 	@Override
-	public int deleteBook(int id) {
-		for(Book b : books){
-			if (b.getId()==id) {
-				books.remove(b);
-				return 0;
-			}
+	public int deleteBook(long id) {
+		for(Iterator<Book> b=books.iterator() ; b.hasNext();){
+			if(b.next().getId()==id)b.remove();
 		}
 		return -1;
 	}
+	
+	public int deleteBook(Object o) {
+		
+		if(books.remove(o)) return 0;
+		return -1;
+	}
+	
+	
 
 	@Override
-	public int checkBookStatus(int id) {
+	public int checkBookStatus(long id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
