@@ -48,7 +48,7 @@ public class StaxParser {
           StartElement startElement = event.asStartElement();
           // If we have an item element, we create a new item
           if (startElement.getName().getLocalPart() == (BOOK)) {
-        	  System.out.println("nowa ksiazka");
+        	
             book = new BookS();
             // We read the attributes from this tag and add the date
             // attribute to our object
@@ -99,12 +99,12 @@ public class StaxParser {
               }
           
           }
-          System.out.println(event.isEndElement());
+         
         // If we reach the end of an item element, we add it to the list
         if (event.isEndElement()) {
           EndElement endElement = event.asEndElement();
           if (endElement.getName().getLocalPart() == (BOOK)) {
-        	  System.out.println("dodaje ksiazke");
+        	  
             books.add(book);
           }
         }
@@ -119,5 +119,87 @@ public class StaxParser {
     
     return books;
   }
+  
+  
+  
+  
+  
+  //-------------------------------------------------------------------
+  
+  
+  public static Book checkLibrary(String libraryFile,Collection<Book> books) {
+	  ArrayList<Book> booksArrayList = (ArrayList<Book>) books;
+	  
+	  int index = 0;
+	    try {
+	      // First, create a new XMLInputFactory
+	      XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+	      // Setup a new eventReader
+	      InputStream in = new FileInputStream(libraryFile);
+	      XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
+	      // read the XML document
+	  
+	
+	      while (eventReader.hasNext()) {
+	        XMLEvent event = eventReader.nextEvent();
+
+	        if (event.isStartElement()) {
+	          StartElement startElement = event.asStartElement();
+	          // If we have an item element, we create a new item
+	          if (startElement.getName().getLocalPart() == (BOOK)) {
+	        	
+	          }
+
+	          if (event.isStartElement()) {
+	            if (event.asStartElement().getName().getLocalPart()
+	                .equals(ID)) {
+	              event = eventReader.nextEvent();
+	              
+	              if(booksArrayList.get(index).getId()!=Long.valueOf(event.asCharacters().getData().toString()))return booksArrayList.get(index);
+		        	continue;
+		            }
+	            }
+	          
+	       
+	          if (event.asStartElement().getName().getLocalPart()
+	                  .equals(STATUS)) {
+	                event = eventReader.nextEvent();
+	                if(booksArrayList.get(index).getStatus()!=Integer.valueOf(event.asCharacters().getData())){
+	                	int tmpStat=booksArrayList.get(index).getStatus();
+	                	
+	                	booksArrayList.get(index).setStatus(Integer.valueOf(event.asCharacters().getData()));
+	                	LibraryS.syncWithUi(booksArrayList.get(index),tmpStat);
+	                	
+	                	
+	                
+	                }
+		        	continue;
+	              }
+	          
+	          }
+	        
+	        // If we reach the end of an item element, we add it to the list
+	        if (event.isEndElement()) {
+	          EndElement endElement = event.asEndElement();
+	          if (endElement.getName().getLocalPart() == (BOOK)) {
+	        	  index++;
+	          }
+	        }
+
+	     
+	      }
+	    } catch (FileNotFoundException e) {
+	      e.printStackTrace();
+	    } catch (XMLStreamException e) {
+	      e.printStackTrace();
+	    }
+	    
+	    return null;
+	  }
+  
+  
+  
+  
+  
 
 } 

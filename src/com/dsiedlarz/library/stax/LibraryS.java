@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.swt.widgets.Display;
+
 import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
 import com.dsiedlarz.library.API.Library;
@@ -20,6 +26,9 @@ public class LibraryS implements Library {
 		for (Book b : books)
 			if (b.getId() >= availableId)
 				availableId = b.getId() + 1;
+
+		job.setUser(true);
+		job.schedule();
 
 	}
 
@@ -69,7 +78,9 @@ public class LibraryS implements Library {
 	@Override
 	public int checkBookStatus(long id) {
 
-		for(Book b:books)if(b.getId()==id)return b.getStatus();
+		for (Book b : books)
+			if (b.getId() == id)
+				return b.getStatus();
 		return -1;
 	}
 
@@ -84,7 +95,29 @@ public class LibraryS implements Library {
 		StaxWriter.saveConfig(References.getStaxFile(), books);
 		return 0;
 	}
-	
-	
+
+	Job job = new Job("First Job") {
+		@Override
+		protected IStatus run(IProgressMonitor monitor) {
+
+			
+			StaxParser.checkLibrary(References.getStaxFile(), books) ;
+				
+				schedule(1000);
+			// use this to open a Shell in the UI thread
+			return Status.OK_STATUS;
+		}
+
+	};
+
+	public static void syncWithUi(Book b,int stat) {
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				ErrorTitleDialog errorTitleDialog = new ErrorTitleDialog(References.getShell(), b,stat);
+				errorTitleDialog.open();
+			}
+		});
+
+	}
 
 }

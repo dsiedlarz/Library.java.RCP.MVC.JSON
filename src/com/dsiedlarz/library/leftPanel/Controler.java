@@ -18,6 +18,8 @@ public class Controler {
 
 	@PostConstruct
 	public void createComposite(Composite parent, EMenuService menuService, Shell shell) {
+		
+		
 		FormLayout layout = new FormLayout();
 		layout.marginHeight = 10;
 		layout.marginWidth = 5;
@@ -59,7 +61,7 @@ public class Controler {
 		// create FormData and set each of its sides
 		formData = new FormData();
 		formData.top = new FormAttachment(25, 0);
-		formData.bottom = new FormAttachment(45, 0);
+		formData.bottom = new FormAttachment(40, 0);
 		formData.left = new FormAttachment(10, 0);
 		formData.right = new FormAttachment(90, 0);
 
@@ -88,8 +90,8 @@ public class Controler {
 
 		// create FormData and set each of its sides
 		formData = new FormData();
-		formData.top = new FormAttachment(50, 0);
-		formData.bottom = new FormAttachment(70, 0);
+		formData.top = new FormAttachment(45, 0);
+		formData.bottom = new FormAttachment(60, 0);
 		formData.left = new FormAttachment(10, 0);
 		formData.right = new FormAttachment(90, 0);
 
@@ -116,8 +118,8 @@ public class Controler {
 
 		// create FormData and set each of its sides
 		formData = new FormData();
-		formData.top = new FormAttachment(75, 0);
-		formData.bottom = new FormAttachment(95, 0);
+		formData.top = new FormAttachment(65, 0);
+		formData.bottom = new FormAttachment(80, 0);
 		formData.left = new FormAttachment(10, 0);
 		formData.right = new FormAttachment(90, 0);
 
@@ -132,6 +134,35 @@ public class Controler {
 				case SWT.Selection:
 					CheckTitleDialog checkTitleDialog = new CheckTitleDialog(shell);
 					checkTitleDialog.open();
+					break;
+				}
+
+			}
+
+		});
+		
+		
+		Button button5 = new Button(parent, SWT.PUSH);
+		button5.setText("Edytuj ksi¹¿kê");
+
+		// create FormData and set each of its sides
+		formData = new FormData();
+		formData.top = new FormAttachment(85, 0);
+		formData.bottom = new FormAttachment(100, 0);
+		formData.left = new FormAttachment(10, 0);
+		formData.right = new FormAttachment(90, 0);
+
+		// set FormDate for button
+		button5.setLayoutData(formData);
+
+		button5.addListener(SWT.Selection, new Listener() {
+
+			@Override
+			public void handleEvent(Event event) {
+				switch (event.type) {
+				case SWT.Selection:
+					EditBookTitleDialog editBookTitleDialog = new EditBookTitleDialog(shell);
+					editBookTitleDialog.open();
 					break;
 				}
 

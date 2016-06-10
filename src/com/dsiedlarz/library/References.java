@@ -1,6 +1,7 @@
 package com.dsiedlarz.library;
 
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.widgets.Shell;
 
 import com.dsiedlarz.library.API.Book;
 import com.dsiedlarz.library.API.Library;
@@ -59,6 +60,20 @@ public class References {
 	public static void setStaxFile(String staxFile) {
 		References.staxFile = staxFile;
 	}
+	
+	
+	private static Shell shell;
+
+	public static Shell getShell() {
+		return shell;
+	}
+
+	public static void setShell(Shell shell) {
+		References.shell = shell;
+	}
+	
+	
+	
 	
 	
 	

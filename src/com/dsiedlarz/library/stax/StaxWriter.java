@@ -92,5 +92,8 @@ public class StaxWriter {
     eventWriter.add(end);
 
   }
+  
+  
+  
 
 } 

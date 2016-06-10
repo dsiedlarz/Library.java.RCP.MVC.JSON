@@ -2,10 +2,8 @@ package com.dsiedlarz.library;
 
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.osgi.framework.BundleActivator;
@@ -13,12 +11,12 @@ import org.osgi.framework.BundleContext;
 
 import com.dsiedlarz.library.API.Book;
 import com.dsiedlarz.library.API.Library;
-import com.dsiedlarz.library.mock.LibraryM;
 
 public class Activator implements BundleActivator {
 
 	private static BundleContext context;
 	private static Library library;
+	private static BufferedReader br;
 	
 	public static Library getLibrary(){
 		return library;
@@ -57,7 +55,7 @@ public class Activator implements BundleActivator {
 	      try {
 	    	
 	    	  
-	    	  BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Dawid\\workspace\\com.dsiedlarz.library\\prefs.conf"));
+	    	  br = new BufferedReader(new FileReader("C:\\Users\\Dawid\\workspace\\com.dsiedlarz.library\\prefs.conf"));
 	  		String className= br.readLine();
 	          Class<Library> classDefinition = (Class<Library>) Class.forName(className);
 	          object = classDefinition.newInstance();

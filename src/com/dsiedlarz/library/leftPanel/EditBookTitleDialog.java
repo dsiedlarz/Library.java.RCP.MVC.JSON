@@ -14,14 +14,15 @@ import org.eclipse.swt.widgets.Text;
 import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
 
-public class AddTitleDialog extends TitleAreaDialog {
+public class EditBookTitleDialog extends TitleAreaDialog {
 
-	  public AddTitleDialog(Shell parentShell) {
+	  public EditBookTitleDialog(Shell parentShell) {
 		super(parentShell);
-		// TODO Auto-generated constructor stub
-	
+
+		
 	}
 
+	  private Book b;
 	  private Text txtTitle;
 	  private Text txtAuthor;
 	  private Text txtYear;
@@ -48,12 +49,18 @@ public class AddTitleDialog extends TitleAreaDialog {
 	    container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	    GridLayout layout = new GridLayout(2, false);
 	    container.setLayout(layout);
-
+	    
+	    if(References.getTableViewer().getStructuredSelection().size()!=1){
+	    	Label label = new Label(parent,SWT.PUSH);
+	    	label.setText("Wybierz jedn¹ ksi¹zkê");
+	    }
+	    else{
+	    	b=(Book)References.getTableViewer().getStructuredSelection().getFirstElement();
 	    createTitle(container);
 	    createAuthor(container);
 	    createYear(container);
 	    createIsbn(container);
-
+	    }
 	    return area;
 	  }
 	  
@@ -64,9 +71,9 @@ public class AddTitleDialog extends TitleAreaDialog {
 		    GridData dataTitle = new GridData();
 		    dataTitle.grabExcessHorizontalSpace = true;
 		    dataTitle.horizontalAlignment = GridData.FILL;
-
 		    txtTitle = new Text(container, SWT.BORDER);
 		    txtTitle.setLayoutData(dataTitle);
+		    txtTitle.setText(b.getTitle());
 		  }
 	  
 
@@ -80,6 +87,7 @@ public class AddTitleDialog extends TitleAreaDialog {
 
 	    txtAuthor = new Text(container, SWT.BORDER);
 	    txtAuthor.setLayoutData(dataAuthor);
+	    txtAuthor.setText(b.getAuthor());
 	  }
 	  
 	  private void createYear(Composite container) {
@@ -92,6 +100,7 @@ public class AddTitleDialog extends TitleAreaDialog {
 
 		    txtYear = new Text(container, SWT.BORDER);
 		    txtYear.setLayoutData(dataYear);
+		    txtYear.setText(b.getYear());
 		  }
 	  
 	  private void createIsbn(Composite container) {
@@ -104,6 +113,7 @@ public class AddTitleDialog extends TitleAreaDialog {
 
 		    txtIsbn = new Text(container, SWT.BORDER);
 		    txtIsbn.setLayoutData(dataIsbn);
+		    txtIsbn.setText(b.getIsbn());
 		  }
 	  
 	
@@ -121,19 +131,20 @@ public class AddTitleDialog extends TitleAreaDialog {
 	  
 	  private void saveInput() {
 		  
-		Book tmp = References.getNewBook();
-		tmp.setTitle(txtTitle.getText().length()!=0?txtTitle.getText():"-");
-		tmp.setAuthor(txtAuthor.getText().length()!=0?txtAuthor.getText():"-");
-		tmp.setYear(txtYear.getText().length()!=0?txtYear.getText():"-");
-		tmp.setIsbn(txtIsbn.getText().length()!=0?txtIsbn.getText():"-");
 		
-		References.getLibrary().addNewBook(tmp);
+		b.setTitle(txtTitle.getText().length()!=0?txtTitle.getText():"-");
+		b.setAuthor(txtAuthor.getText().length()!=0?txtAuthor.getText():"-");
+		b.setYear(txtYear.getText().length()!=0?txtYear.getText():"-");
+		b.setIsbn(txtIsbn.getText().length()!=0?txtIsbn.getText():"-");
+		
+		
 		References.getTableViewer().refresh();
-
+		References.getLibrary().refresh();
 	  }
 
 	  @Override
 	  protected void okPressed() {
+		 
 	    saveInput();
 	    super.okPressed();
 	  }
