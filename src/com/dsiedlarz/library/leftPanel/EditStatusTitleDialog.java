@@ -20,7 +20,7 @@ public class EditStatusTitleDialog extends TitleAreaDialog {
 
 	public EditStatusTitleDialog(Shell parentShell) {
 		super(parentShell);
-		// TODO Auto-generated constructor stub
+	
 
 	}
 
@@ -36,22 +36,43 @@ public class EditStatusTitleDialog extends TitleAreaDialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);
 		Composite container = new Composite(area, SWT.NONE);
+	   
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 		GridLayout layout = new GridLayout(3, true);
-
+        container.setLayout(layout);
+        
+        
+		
 		Label label = new Label(container, SWT.PUSH);
-		container.setLayout(layout);
+		
+		
+		
+		
+		
+		
+		if(References.getTableViewer().getStructuredSelection().size() > 20)
+			label.setText("Wybierz mniej ni¿ 20 ksi¹¿ek\n");
+		else
+		if (References.getTableViewer().getStructuredSelection().size() != 0) {
 
-		if (References.getTableViewer().getStructuredSelection().size() == 1) {
-
-			label.setText(
-					"Zmieñ stan: \n" + References.getTableViewer().getStructuredSelection().getFirstElement() + "\n\n");
-
+			StringBuilder tmp = new StringBuilder();
+			tmp.append("Zmieñ status nastêpuj¹cych ksi¹zek: \n");
+			for(Object o:References.getTableViewer().getStructuredSelection().toArray()){
+				tmp.append(((Book)o).toString());
+				tmp.append("\n");
+			}
+		
+			label.setText(tmp.toString());
+			
 			GridData dataTitle = new GridData();
 
 			dataTitle.grabExcessHorizontalSpace = true;
 			dataTitle.horizontalAlignment = GridData.FILL;
 			dataTitle.horizontalSpan = 3;
+			dataTitle.grabExcessVerticalSpace = true;
+			
+			
+			
 
 			label.setLayoutData(dataTitle);
 
@@ -78,8 +99,10 @@ public class EditStatusTitleDialog extends TitleAreaDialog {
 				public void handleEvent(Event event) {
 					switch (event.type) {
 					case SWT.Selection:
-						((Book) References.getTableViewer().getStructuredSelection().getFirstElement()).setStatus(2);
-					}
+						for(Object o:References.getTableViewer().getStructuredSelection().toArray()){
+							((Book)o).setStatus(2);;
+							
+						}}
 
 					okPressed();
 				}
@@ -92,8 +115,11 @@ public class EditStatusTitleDialog extends TitleAreaDialog {
 				public void handleEvent(Event event) {
 					switch (event.type) {
 					case SWT.Selection:
-						((Book) References.getTableViewer().getStructuredSelection().getFirstElement()).setStatus(1);
-					}
+						for(Object o:References.getTableViewer().getStructuredSelection().toArray()){
+							((Book)o).setStatus(1);;
+							
+						}}
+
 					okPressed();
 				}
 
@@ -105,15 +131,18 @@ public class EditStatusTitleDialog extends TitleAreaDialog {
 				public void handleEvent(Event event) {
 					switch (event.type) {
 					case SWT.Selection:
-						((Book) References.getTableViewer().getStructuredSelection().getFirstElement()).setStatus(3);
-					}
+						for(Object o:References.getTableViewer().getStructuredSelection().toArray()){
+							((Book)o).setStatus(3);;
+							
+						}}
+
 					okPressed();
 				}
 
 			});
 
 		} else {
-			label.setText("Wybierz jedn¹ ksi¹¿kê");
+			label.setText("Wybierz przynajmniej jedn¹ ksi¹¿kê");
 		}
 
 		return area;
@@ -122,6 +151,9 @@ public class EditStatusTitleDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 
+		
+		References.getTableViewer().refresh();
+		References.getLibrary().refresh();
 		super.okPressed();
 	}
 

@@ -4,7 +4,7 @@
     <children xsi:type="basic:PartSashContainer" xmi:id="_jf2vgC1SEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.partsashcontainer.0" horizontal="true">
       <children xsi:type="basic:Part" xmi:id="_KpYy8C1XEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.part.menu" containerData="1000" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.leftPanel.Controler" label="Menu" iconURI="platform:/plugin/com.dsiedlarz.library/icons/iconLibrary.png"/>
       <children xsi:type="basic:PartSashContainer" xmi:id="_ZqUPQC56EeaCM-anwYMs_g" elementId="com.dsiedlarz.library.partsashcontainer.1">
-        <children xsi:type="basic:Part" xmi:id="_e6nEMC56EeaCM-anwYMs_g" elementId="com.dsiedlarz.library.part.search" containerData="300" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.rightPanel.SearchPanel" label="Search"/>
+        <children xsi:type="basic:Part" xmi:id="_e6nEMC56EeaCM-anwYMs_g" elementId="com.dsiedlarz.library.part.search" containerData="1000" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.rightPanel.SearchPanel" label="Search"/>
         <children xsi:type="basic:Part" xmi:id="_8wppQC2dEeayltIsUEvGEg" elementId="com.dsiedlarz.library.part.lista" containerData="9700" contributionURI="bundleclass://com.dsiedlarz.library/com.dsiedlarz.library.rightPanel.Controller" label="Lista" iconURI="platform:/plugin/com.dsiedlarz.library/icons/iconLibrary.png"/>
       </children>
     </children>

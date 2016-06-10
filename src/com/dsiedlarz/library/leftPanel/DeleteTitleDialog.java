@@ -15,11 +15,14 @@ import com.dsiedlarz.library.API.Book;
 
 public class DeleteTitleDialog extends TitleAreaDialog {
 
+	
+	boolean ok = false;
 	public DeleteTitleDialog(Shell parentShell) {
 		super(parentShell);
 		// TODO Auto-generated constructor stub
 
 	}
+	
 
 	@Override
 	public void create() {
@@ -36,8 +39,12 @@ public class DeleteTitleDialog extends TitleAreaDialog {
 		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		GridLayout layout = new GridLayout(2, false);
 		container.setLayout(layout);
-
 		Label booksTitle = new Label(container, SWT.NONE);
+		
+		if (References.getTableViewer().getStructuredSelection().size() != 0) {
+
+			ok=true;
+	
 		StringBuilder tmp = new StringBuilder();
 
 		tmp.append("Czy na pewno chcesz usun¹æ nastêpuj¹ce tytu³y: \n\n");
@@ -48,6 +55,10 @@ public class DeleteTitleDialog extends TitleAreaDialog {
 		}
 
 		booksTitle.setText(tmp.toString());
+		
+	} else {
+		booksTitle.setText("Wybierz przynajmniej jedn¹ ksi¹zke jedn¹ ksi¹¿kê");
+	}
 
 		return area;
 	}
@@ -64,7 +75,7 @@ public class DeleteTitleDialog extends TitleAreaDialog {
 
 	@Override
 	protected void okPressed() {
-		saveInput();
+		if(ok)saveInput();
 		super.okPressed();
 	}
 

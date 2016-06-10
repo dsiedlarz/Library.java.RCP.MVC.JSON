@@ -12,13 +12,13 @@ public class LibraryS implements Library {
 
 	Collection<Book> books = new ArrayList<Book>();
 
-	long availableId = -1;
+	long availableId = 1;
 
 	public LibraryS() {
 		books = StaxParser.readLibrary(References.getStaxFile());
 
 		for (Book b : books)
-			if (b.getId() > availableId)
+			if (b.getId() >= availableId)
 				availableId = b.getId() + 1;
 
 	}
@@ -69,13 +69,22 @@ public class LibraryS implements Library {
 	@Override
 	public int checkBookStatus(long id) {
 
-		return 0;
+		for(Book b:books)if(b.getId()==id)return b.getStatus();
+		return -1;
 	}
 
 	@Override
 	public long getAvailableId() {
-		// TODO Auto-generated method stub]
+		System.out.println("AvailableId");
 		return availableId++;
 	}
+
+	@Override
+	public int refresh() {
+		StaxWriter.saveConfig(References.getStaxFile(), books);
+		return 0;
+	}
+	
+	
 
 }

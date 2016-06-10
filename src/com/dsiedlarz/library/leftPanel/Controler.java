@@ -72,7 +72,7 @@ public class Controler {
 			public void handleEvent(Event event) {
 				switch (event.type) {
 				case SWT.Selection:
-					Dialog dialog = new OpenTitleDialog(shell);
+					Dialog dialog = new AddTitleDialog(shell);
 					dialog.open();
 
 					break;

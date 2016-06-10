@@ -14,9 +14,9 @@ import org.eclipse.swt.widgets.Text;
 import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
 
-public class OpenTitleDialog extends TitleAreaDialog {
+public class AddTitleDialog extends TitleAreaDialog {
 
-	  public OpenTitleDialog(Shell parentShell) {
+	  public AddTitleDialog(Shell parentShell) {
 		super(parentShell);
 		// TODO Auto-generated constructor stub
 	
@@ -122,10 +122,10 @@ public class OpenTitleDialog extends TitleAreaDialog {
 	  private void saveInput() {
 		  
 		Book tmp = References.getNewBook();
-		tmp.setTitle(txtTitle.getText());
-		tmp.setAuthor(txtAuthor.getText());
-		tmp.setYear(txtYear.getText());
-		tmp.setIsbn(txtIsbn.getText());
+		tmp.setTitle(txtTitle.getText().length()!=0?txtTitle.getText():"-");
+		tmp.setAuthor(txtAuthor.getText().length()!=0?txtTitle.getText():"-");
+		tmp.setYear(txtYear.getText().length()!=0?txtTitle.getText():"-");
+		tmp.setIsbn(txtIsbn.getText().length()!=0?txtTitle.getText():"-");
 		
 		References.getLibrary().addNewBook(tmp);
 		References.getTableViewer().refresh();

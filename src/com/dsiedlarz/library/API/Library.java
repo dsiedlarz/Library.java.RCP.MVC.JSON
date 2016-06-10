@@ -18,6 +18,8 @@ public interface Library {
     
     public long getAvailableId();
     
+    public int refresh();
+    
     
 
 }

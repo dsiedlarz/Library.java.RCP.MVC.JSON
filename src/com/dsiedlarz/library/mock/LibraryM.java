@@ -72,6 +72,14 @@ public class LibraryM implements Library {
 		return availableId++;
 	}
 
+
+	@Override
+	public int refresh() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 	
 	
 }
