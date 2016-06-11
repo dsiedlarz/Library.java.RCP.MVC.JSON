@@ -96,8 +96,27 @@ this.year = year;
 
 	@Override
 	public String toString() {
+		String s = String.format("%4d. %20s %25s %20s %20s", getId(),getTitle(),getAuthor(),getYear(), getIsbn())	;
+	 
 		
-		return String.format("%4d. %20s %25s %8s %s", getId(),getTitle(),getAuthor(),getYear(), getIsbn())	;
+		switch (status) {
+		case 1:
+			s+="    Dostêpna";
+			break;
+		case 2:
+			s+="    Wypo¿yczona";
+			break;
+		case 3:
+			s+="    Zniszczona";
+			break;
+		default:
+			s+="    Brak informacji";
+			break;
+
+		}
+		
+		return s;
+				
 	}
 	
 	

@@ -145,6 +145,7 @@ public class EditBookTitleDialog extends TitleAreaDialog {
 	  @Override
 	  protected void okPressed() {
 		 
+		if(References.getTableViewer().getStructuredSelection().size()==1)
 	    saveInput();
 	    super.okPressed();
 	  }

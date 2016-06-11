@@ -14,6 +14,7 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
 
 
@@ -129,17 +130,19 @@ public class StaxParser {
   
   public static Book checkLibrary(String libraryFile,Collection<Book> books) {
 	  ArrayList<Book> booksArrayList = (ArrayList<Book>) books;
-	  
+	   synchronized(References.getLibrary()){
+	
 	  int index = 0;
 	    try {
 	      // First, create a new XMLInputFactory
 	      XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 	      // Setup a new eventReader
 	      InputStream in = new FileInputStream(libraryFile);
+	     
 	      XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
 	      // read the XML document
 	  
-	
+	     
 	      while (eventReader.hasNext()) {
 	        XMLEvent event = eventReader.nextEvent();
 
@@ -186,13 +189,14 @@ public class StaxParser {
 	          }
 	        }
 
-	     
+	      
 	      }
 	    } catch (FileNotFoundException e) {
 	      e.printStackTrace();
 	    } catch (XMLStreamException e) {
 	      e.printStackTrace();
 	    }
+	   }
 	    
 	    return null;
 	  }

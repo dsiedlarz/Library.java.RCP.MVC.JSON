@@ -51,7 +51,7 @@ public class References {
 		References.tableViewer = tableViewer;
 	}
 	
-	private static String staxFile ="D:\\test.txt";
+	private static String staxFile ="C:\\Users\\Dawid\\Desktop\\library.xml";
 
 	public static String getStaxFile() {
 		return staxFile;

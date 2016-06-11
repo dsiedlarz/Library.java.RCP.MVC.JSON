@@ -27,7 +27,7 @@ public class LibraryS implements Library {
 			if (b.getId() >= availableId)
 				availableId = b.getId() + 1;
 
-		job.setUser(true);
+//		job.setUser(true);
 		job.schedule();
 
 	}
@@ -50,21 +50,27 @@ public class LibraryS implements Library {
 
 	@Override
 	public int addNewBook(Book book) {
+		
 		book.setId(getAvailableId());
+		synchronized(References.getLibrary()){
 		books.add(book);
-
-		StaxWriter.saveConfig(References.getStaxFile(), books);
+		}
+//		saveToFile.setUser(true);
+		saveToFile.schedule();
 
 		return 0;
 	}
 
 	@Override
 	public int deleteBook(long id) {
+		synchronized(References.getLibrary()){
 		for (Iterator<Book> b = books.iterator(); b.hasNext();) {
 			if (b.next().getId() == id)
 				b.remove();
 		}
-		StaxWriter.saveConfig(References.getStaxFile(), books);
+		}
+//		saveToFile.setUser(true);
+		saveToFile.schedule();
 		return -1;
 	}
 
@@ -92,7 +98,8 @@ public class LibraryS implements Library {
 
 	@Override
 	public int refresh() {
-		StaxWriter.saveConfig(References.getStaxFile(), books);
+		saveToFile.setUser(true);
+		saveToFile.schedule();
 		return 0;
 	}
 
@@ -119,5 +126,21 @@ public class LibraryS implements Library {
 		});
 
 	}
+	
+	
+
+	Job saveToFile = new Job("Save Job") {
+		@Override
+		protected IStatus run(IProgressMonitor monitor) {
+
+			
+			StaxWriter.saveLibrary(References.getStaxFile(), books) ;
+				
+		
+			// use this to open a Shell in the UI thread
+			return Status.OK_STATUS;
+		}
+
+	};
 
 }
