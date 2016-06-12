@@ -14,6 +14,11 @@ import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+
 import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
 
@@ -115,12 +120,33 @@ public class StaxParser {
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (XMLStreamException e) {
-      e.printStackTrace();
+    	
+    	final ArrayList<Book> books2 = new ArrayList<Book>();
+    	
+    	 Job saveToFileEmpty = new Job("Save Job") {
+    			@Override
+    			protected IStatus run(IProgressMonitor monitor) {
+
+    				
+    				StaxWriter.saveLibrary(References.getStaxFile(), books2) ;
+    					
+    			
+    				// use this to open a Shell in the UI thread
+    				return Status.OK_STATUS;
+    			}
+
+    		};
+    		
+    		saveToFileEmpty.schedule();
+    		return new ArrayList<Book> ();
+      
     }
     
     return books;
   }
   
+  
+
   
   
   

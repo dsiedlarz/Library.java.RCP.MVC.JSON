@@ -14,7 +14,10 @@ Composite Text {
   background-color: white;
   color: black;
 }
-SashForm {
+Part {
+  background-color: #121212;
+}
+TrimmenWindow {
   background-color: #121212;
 }
 /* background uses a gradient */

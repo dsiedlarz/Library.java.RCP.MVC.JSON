@@ -37,6 +37,8 @@ public class Activator implements BundleActivator {
 		library = createLibrary();
 		References.setLibrary(library);
 		
+		
+		
  
 		System.out.println("Siema, zaczynamy");
 	}
@@ -49,6 +51,7 @@ public class Activator implements BundleActivator {
 		Activator.context = null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	static Library createLibrary() {
 		
 	      Library object = null;
@@ -58,21 +61,26 @@ public class Activator implements BundleActivator {
 	    	  br = new BufferedReader(new FileReader("C:\\Users\\Dawid\\workspace\\com.dsiedlarz.library\\prefs.conf"));
 	  		String className= br.readLine();
 	          Class<Library> classDefinition = (Class<Library>) Class.forName(className);
-	          object = classDefinition.newInstance();
+	          
 	          className= br.readLine();
 	          References.setBookClass((Class<Book>) Class.forName(className));
 	        
 	          References.setStaxFile(br.readLine());
 	          
+	          object = classDefinition.newInstance();
 	      } catch (InstantiationException e) {
+	    	  System.out.println("instantion");
 	          System.out.println(e);
 	      } catch (IllegalAccessException e) {
+	    	  System.out.println("illegal acces");
 	          System.out.println(e);
 	      } catch (ClassNotFoundException e) {
-	          System.out.println(e);
+	    	  References.setErrorMessage("Klasa z prefs.conf nie zosta³a znaleziona");
+	    	  return null;
+	          
 	      } catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	    	  References.setErrorMessage(" prefs.conf nie zosta³ znaleziony");
+	    	  return null;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

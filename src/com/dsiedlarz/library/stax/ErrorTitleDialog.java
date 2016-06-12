@@ -3,6 +3,8 @@ package com.dsiedlarz.library.stax;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -30,11 +32,12 @@ public class ErrorTitleDialog extends TitleAreaDialog {
 	@Override
 	public void create() {
 		super.create();
-		setTitle("This is my first custom dialog");
-		setMessage("This is a TitleAreaDialog", IMessageProvider.INFORMATION);
+		setTitle("Biblioteka");
+		setTitleAreaColor(new RGB(123,123,123));
+		setMessage("Zmiana statusu ksi¹¿ki w tle", IMessageProvider.NONE);
+		setTitleImage(new Image(null,References.titleImage));
 
 	}
-
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);

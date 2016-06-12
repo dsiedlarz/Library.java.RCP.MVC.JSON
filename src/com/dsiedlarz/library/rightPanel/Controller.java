@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.services.EMenuService;
+import org.eclipse.e4.ui.workbench.IWorkbench;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
@@ -15,8 +16,10 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 
+import com.dsiedlarz.library.CriticalErrorTitleDialog;
 import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
 
@@ -26,10 +29,16 @@ public class Controller {
 
 
 	@PostConstruct
-	public void createComposite(Composite parent, EMenuService menuService) {
+	public void createComposite( Composite parent, EMenuService menuService, Shell shell,IWorkbench workbench) {
 		TableColumnLayout tableColumnLayout = new TableColumnLayout();
 		parent.setLayout(tableColumnLayout);
-
+		
+		if(References.getLibrary()==null){
+			CriticalErrorTitleDialog error = new CriticalErrorTitleDialog(workbench, shell, References.getErrorMessage());
+			error.open();
+		}
+		else{
+		
 		
 		
 		
@@ -132,6 +141,7 @@ public class Controller {
 
 		tableViewer.setInput(References.getLibrary().getBooks());
 		
+		}
 		
 	}
 	

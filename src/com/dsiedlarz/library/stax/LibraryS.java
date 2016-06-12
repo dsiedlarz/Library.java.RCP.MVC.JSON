@@ -129,7 +129,7 @@ public class LibraryS implements Library {
 	
 	
 
-	Job saveToFile = new Job("Save Job") {
+ Job saveToFile = new Job("Save Job") {
 		@Override
 		protected IStatus run(IProgressMonitor monitor) {
 
@@ -142,5 +142,26 @@ public class LibraryS implements Library {
 		}
 
 	};
+	
+	public void saveEmpty(){
+		 Job saveToFileEmpty = new Job("Save Job") {
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
+
+					
+					StaxWriter.saveLibrary(References.getStaxFile(), new ArrayList<Book>()) ;
+						
+				
+					// use this to open a Shell in the UI thread
+					return Status.OK_STATUS;
+				}
+
+			};
+		
+			saveToFileEmpty.schedule();
+		
+		
+		
+	}
 
 }

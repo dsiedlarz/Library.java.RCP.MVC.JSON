@@ -51,7 +51,7 @@ public class References {
 		References.tableViewer = tableViewer;
 	}
 	
-	private static String staxFile ="C:\\Users\\Dawid\\Desktop\\library.xml";
+	private static String staxFile ;
 
 	public static String getStaxFile() {
 		return staxFile;
@@ -71,6 +71,20 @@ public class References {
 	public static void setShell(Shell shell) {
 		References.shell = shell;
 	}
+	
+	
+	private static String errorMessage;
+
+	public static String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public static void setErrorMessage(String errorMessage) {
+		References.errorMessage = errorMessage;
+	}
+	
+	
+	public static String titleImage = "C:\\Users\\Dawid\\workspace\\com.dsiedlarz.library\\icons\\iconLibrary.png";
 	
 	
 	

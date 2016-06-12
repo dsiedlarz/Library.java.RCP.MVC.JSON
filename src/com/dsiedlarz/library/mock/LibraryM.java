@@ -59,6 +59,7 @@ public class LibraryM implements Library {
 	public int addNewBook(Book book) {
 		book.setId(getAvailableId());
 		books.add(book);
+		status.add(new StatusM(book.getId(),book.getStatus()));
 		return 0;
 	}
 
