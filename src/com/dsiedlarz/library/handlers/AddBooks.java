@@ -6,6 +6,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import com.dsiedlarz.library.References;
@@ -27,7 +28,7 @@ public class AddBooks {
 		@Override
 		protected IStatus run(IProgressMonitor monitor) {
 
-			for(int i=0 ;i<1000;i++){
+			for(int i=0 ;i<100;i++){
 				Book b = References.getNewBook();
 				b.setTitle("Tytul "+i);
 				b.setAuthor("Autor "+i);
@@ -36,7 +37,11 @@ public class AddBooks {
 				References.getLibrary().addNewBook(b);
 			}	
 			
-				
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					References.getTableViewer().refresh();
+				}
+			});
 		
 			// use this to open a Shell in the UI thread
 			return Status.OK_STATUS;

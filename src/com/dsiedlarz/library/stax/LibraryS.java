@@ -98,7 +98,7 @@ public class LibraryS implements Library {
 
 	@Override
 	public int refresh() {
-		saveToFile.setUser(true);
+		
 		saveToFile.schedule();
 		return 0;
 	}

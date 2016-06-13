@@ -7,12 +7,9 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import com.dsiedlarz.library.References;
@@ -99,66 +96,7 @@ public class ErrorTitleDialog extends TitleAreaDialog {
 		
 			label.setText(tmp.toString());
 			
-			GridData dataTitle = new GridData();
-
-			dataTitle.grabExcessHorizontalSpace = true;
-			dataTitle.horizontalAlignment = GridData.FILL;
-			dataTitle.horizontalSpan = 2;
-			dataTitle.grabExcessVerticalSpace = true;
 			
-			
-			
-
-			label.setLayoutData(dataTitle);
-
-			dataTitle = new GridData();
-
-			dataTitle.grabExcessHorizontalSpace = true;
-			dataTitle.horizontalAlignment = GridData.FILL;
-
-			Button button1 = new Button(container, SWT.PUSH);
-			button1.setText("Wypo¿ycz");
-			button1.setLayoutData(dataTitle);
-
-			Button button2 = new Button(container, SWT.PUSH);
-			button2.setText("Zwróæ");
-			button2.setLayoutData(dataTitle);
-
-			
-
-			button1.addListener(SWT.Selection, new Listener() {
-
-				@Override
-				public void handleEvent(Event event) {
-					switch (event.type) {
-					case SWT.Selection:
-						for(Object o:References.getTableViewer().getStructuredSelection().toArray()){
-							((Book)o).setStatus(2);;
-							
-						}}
-
-					okPressed();
-				}
-
-			});
-
-			button2.addListener(SWT.Selection, new Listener() {
-
-				@Override
-				public void handleEvent(Event event) {
-					switch (event.type) {
-					case SWT.Selection:
-						for(Object o:References.getTableViewer().getStructuredSelection().toArray()){
-							((Book)o).setStatus(1);;
-							
-						}}
-
-					okPressed();
-				}
-
-			});
-
-		
 
 		
 

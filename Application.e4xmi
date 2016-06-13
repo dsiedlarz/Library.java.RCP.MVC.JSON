@@ -10,7 +10,7 @@
     </children>
     <mainMenu xmi:id="_gFPCwC1SEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.menu.0">
       <children xsi:type="menu:Menu" xmi:id="_tvt1wC1SEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.menu.file" label="File">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_sgmv8DATEeaVO_aGHveL4Q" elementId="com.dsiedlarz.library.handledmenuitem.dodaj1000ksiek" label="Dodaj 1000 książek" command="_weVw0DATEeaVO_aGHveL4Q"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_sgmv8DATEeaVO_aGHveL4Q" elementId="com.dsiedlarz.library.handledmenuitem.dodaj1000ksiek" label="Dodaj 100 książek" command="_weVw0DATEeaVO_aGHveL4Q"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_zTMP8C1TEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.menu.others" label="Others">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_0Eei8C1TEeamXfk7uNL8Hg" elementId="com.dsiedlarz.library.handledmenuitem.aboutme" label="About me" command="_6x-LIC1SEeamXfk7uNL8Hg"/>

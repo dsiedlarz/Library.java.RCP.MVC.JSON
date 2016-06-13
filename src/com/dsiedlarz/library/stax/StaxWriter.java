@@ -14,6 +14,8 @@ import javax.xml.stream.events.StartDocument;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
+import org.eclipse.swt.widgets.Display;
+
 import com.dsiedlarz.library.References;
 import com.dsiedlarz.library.API.Book;
 
@@ -68,6 +70,14 @@ public class StaxWriter {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				References.getTableViewer().refresh();
+			}
+		});
+		
 	}
 
 	private static void createNode(XMLEventWriter eventWriter, String name, String value) throws XMLStreamException {

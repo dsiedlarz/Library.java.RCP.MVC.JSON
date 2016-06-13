@@ -218,7 +218,7 @@ public class StaxParser {
 	      
 	      }
 	    } catch (FileNotFoundException e) {
-	      e.printStackTrace();
+	     StaxWriter.saveLibrary(References.getStaxFile(), new ArrayList<Book>());
 	    } catch (XMLStreamException e) {
 	      e.printStackTrace();
 	    }

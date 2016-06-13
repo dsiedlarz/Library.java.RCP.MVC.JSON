@@ -60,6 +60,7 @@ public class LibraryM implements Library {
 		book.setId(getAvailableId());
 		books.add(book);
 		status.add(new StatusM(book.getId(),book.getStatus()));
+		References.getLibrary().refresh();
 		return 0;
 	}
 
@@ -132,7 +133,7 @@ public class LibraryM implements Library {
 			
 			books.get(generator.nextInt(books.size())).setStatus(generator.nextInt(4));
 				
-				schedule(5000);
+				schedule(10000);
 			// use this to open a Shell in the UI thread
 			return Status.OK_STATUS;
 		}
